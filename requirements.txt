@@ -1,0 +1,7 @@
+google-generativeai>=0.3.0
+alpaca-py>=0.25.0
+yfinance>=0.2.36
+pandas>=2.0.0
+numpy>=1.24.0
+pytz>=2024.1
+python-dotenv>=1.0.0
