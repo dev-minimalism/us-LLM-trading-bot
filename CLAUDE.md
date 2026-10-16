@@ -38,7 +38,7 @@ There is no test suite (`tests/` holds only `__init__.py`), no pytest or lint co
 
 ## Environment variables are read at import time
 
-`src/__init__.py` calls `load_dotenv()` before anything else, so importing any `src.*` module (the scripts, `python3 -m src...` and the console scripts all do) loads `.env` from the repo root; variables already exported in the shell take precedence. `TradingConfig` then captures `GEMINI_API_KEY`, `ALPACA_API_KEY` and `ALPACA_SECRET_KEY` as class attributes via `os.getenv` when `src.config.trading_config` is imported, and each system module's `main()` reads them the same way. Consequences:
+`src/__init__.py` calls `load_dotenv()` on the repo-root `.env` (resolved relative to the package, so the working directory does not matter) before anything else, so importing any `src.*` module (the scripts, `python3 -m src...` and the console scripts all do) loads it; variables already exported in the shell take precedence. `TradingConfig` then captures `GEMINI_API_KEY`, `ALPACA_API_KEY` and `ALPACA_SECRET_KEY` as class attributes via `os.getenv` when `src.config.trading_config` is imported, and each system module's `main()` reads them the same way. Consequences:
 
 - The `load_dotenv()` call must stay above the `TradingConfig` import in `src/__init__.py`.
 - Setting `os.environ[...]` after importing `TradingConfig` does not change what `get_config()` returns.
