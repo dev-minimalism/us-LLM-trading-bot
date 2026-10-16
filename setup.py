@@ -12,11 +12,11 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="ai-trading-bot",
     version="2.0.0",
-    author="Trading Bot Team",
+    author="Yungoo Park",
     description="AI-powered automated trading system for US stocks using Gemini AI and Alpaca broker",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/ai_llm_us_trading_bot",
+    url="https://github.com/dev-minimalism/us-LLM-trading-bot",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

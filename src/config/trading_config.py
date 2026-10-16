@@ -189,7 +189,7 @@ if __name__ == "__main__":
     print("\n=== Usage in Trading System ===\n")
     print("""
 # Conservative strategy with large cap stocks
-from config import TradingConfig
+from src.config import TradingConfig
 config = TradingConfig.get_config(
     strategy='conservative',
     symbols=TradingConfig.LARGE_CAP_SYMBOLS,
@@ -197,7 +197,7 @@ config = TradingConfig.get_config(
 )
 
 # Start trading system
-from event_driven_system_v2 import ImprovedEventDrivenSystem
+from src.systems.v2 import ImprovedEventDrivenSystem
 system = ImprovedEventDrivenSystem(config)
 system.run()
     """)

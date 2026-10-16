@@ -1,6 +1,11 @@
 # AI 기반 미국 주식 자동매매 시스템 V2
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+
 Gemini AI와 Alpaca 브로커를 활용한 실전 가능한 자동매매 시스템입니다.
+
+> **English:** An AI-powered US stock trading bot built on Gemini and the Alpaca broker. Event-driven and hybrid (rule + AI) strategies with automatic stop-loss/take-profit, five risk profiles, and paper trading by default. See [CLAUDE.md](CLAUDE.md) for an architecture walkthrough.
 
 ## 목차
 
@@ -31,6 +36,8 @@ cp .env.example .env
 # ALPACA_SECRET_KEY=your_key_here
 ```
 
+`.env` 파일은 `src` 패키지를 임포트할 때 자동으로 로드되므로(python-dotenv), 환경변수를 따로 export할 필요가 없습니다.
+
 **API 키 발급:**
 - **Gemini**: [Google AI Studio](https://makersuite.google.com/app/apikey) → Create API Key
 - **Alpaca**: [Alpaca Markets](https://alpaca.markets/) → Paper Trading 계정 생성 → API Keys
@@ -54,7 +61,7 @@ python scripts/run_v2_hybrid.py
 ## 📦 프로젝트 구조
 
 ```
-ai_llm_us_trading_bot/
+us-LLM-trading-bot/
 ├── src/                              # 소스 코드 패키지
 │   ├── systems/                     # 트레이딩 시스템
 │   │   ├── v1/                     # V1 시스템 (기본 구현)
@@ -74,15 +81,11 @@ ai_llm_us_trading_bot/
 │   ├── run_v2_hybrid.py           # V2 하이브리드 실행
 │   └── run_backtest.py            # 백테스트 분석
 │
-├── docs/                           # 상세 문서
-│   ├── README.md                  # V1 시스템 가이드
-│   ├── README_V2.md               # V2 시스템 가이드
-│   ├── QUICKSTART.md              # 빠른 시작 가이드
-│   └── CLAUDE.md                  # Claude Code용 가이드
-│
-├── tests/                          # 테스트
+├── tests/                          # 테스트 (현재 비어 있음)
 │   └── __init__.py
 │
+├── CLAUDE.md                       # 아키텍처 및 개발 가이드 (Claude Code용)
+├── LICENSE                         # MIT 라이선스
 ├── setup.py                        # 패키지 설치 설정
 ├── requirements.txt                # Python 패키지 의존성
 ├── .env.example                    # 환경변수 예시
@@ -190,7 +193,7 @@ rsi_weight = 30 * volatility_factor  # 30 ~ 45점
 | 긴급 대응 | AI 질의 필요 | **즉시 자동 청산** |
 | 규칙 기반 거래 | 제한적 (85/15) | **완화 및 강화** (70/30) |
 | 스코어링 | 고정 가중치 | **동적 가중치** (변동성 반영) |
-| 설정 관리 | 코드 내 직접 수정 | **config.py** (5가지 프로필) |
+| 설정 관리 | 코드 내 직접 수정 | **trading_config.py** (5가지 프로필) |
 | AI 비용 절감 | 80-88% | **85-92%** |
 
 ---
@@ -773,13 +776,13 @@ grep "Position Opened\|Position Closed" trading.log
 
 ## 📄 라이선스
 
-MIT License
+[MIT License](LICENSE) © 2025-2026 Yungoo Park
 
 ---
 
 ## 🙏 기여
 
-버그 리포트 및 기능 제안은 언제든지 환영합니다!
+버그 리포트, 기능 제안, Pull Request 모두 환영합니다! 코드를 수정하기 전에 [CLAUDE.md](CLAUDE.md)의 아키텍처 노트(특히 `position_tracker`와 다섯 개 시스템 모듈이 서로 독립적이라는 점)를 먼저 읽어 보시길 권합니다.
 
 ---
 
@@ -789,6 +792,5 @@ MIT License
 
 ## 📞 지원
 
-- 문제 발생 시: GitHub Issues
-- 문서: `docs/` 폴더의 상세 가이드 참고
-- 개발자: `CLAUDE.md` 참고
+- 문제 발생 시: [GitHub Issues](https://github.com/dev-minimalism/us-LLM-trading-bot/issues)
+- 아키텍처 및 개발 가이드: [CLAUDE.md](CLAUDE.md)
